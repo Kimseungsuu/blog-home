@@ -1,8 +1,8 @@
-package com.example.bloghome.service;
+package com.example.bloghome.member.service;
 
-import com.example.bloghome.dto.JoinRequestDto;
-import com.example.bloghome.repository.MemberRepository;
-import com.example.bloghome.domain.Member;
+import com.example.bloghome.member.dto.JoinRequestDto;
+import com.example.bloghome.member.domain.Member;
+import com.example.bloghome.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,7 +26,7 @@ public class MemberService {
         if (password.contains(nickname)) { //닉네임과 같은 값이 포함될 경우 회원가입 실패
             return "회원가입이 실패하셨습니다.";
         }
-        
+
         if (memberRepository.findByNickname(nickname) != null) {
             return "중복된 닉네임이 있습니다.";
         }
