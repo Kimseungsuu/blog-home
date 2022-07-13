@@ -28,6 +28,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    implementation group: 'com.h2database', name: 'h2'
 }
 
 tasks.named('test') {
