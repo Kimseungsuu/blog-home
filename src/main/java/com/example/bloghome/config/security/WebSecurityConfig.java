@@ -9,20 +9,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
-@EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JWTAuthProvider jwtAuthProvider;
@@ -71,22 +70,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * FormLoginFilter : 로그인 인증을 실시합니다.
          * JwtFilter       : 서버에 접근시 JWT 확인 후 인증을 실시합니다.
          */
-//        http
-//                .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .anyRequest().permitAll(); // 모든요청에 대해서 허가하는 것이기에 지워도 됨
-//                .antMatchers("/user/signup","/login").permitAll()
-//                .and()
-//                // [로그아웃 기능]
-//                .logout()
-//                // 로그아웃 요청 처리 URL
-//                .logoutUrl("/user/logout").permitAll() // 권한없어도 진행할 수 있게끔 permitAll
-//                .and()
-//                .exceptionHandling(); // 입센션이 터지면 잡아서 처리해라
-//                // "접근 불가" 페이지 URL 설정
-//                .accessDeniedPage("/forbidden.html");
+                .antMatchers("/user/signup","/login").permitAll()
+                .anyRequest().permitAll() // 모든요청에 대해서 허가하는 것이기에 지워도 됨
+                .and()
+                // [로그아웃 기능]
+                .logout()
+                // 로그아웃 요청 처리 URL
+                .logoutUrl("/user/logout").permitAll() // 권한없어도 진행할 수 있게끔 permitAll
+                .and()
+                .exceptionHandling(); // 입센션이 터지면 잡아서 처리해라
+                // "접근 불가" 페이지 URL 설정
     }
 
     @Bean
