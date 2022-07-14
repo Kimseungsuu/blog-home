@@ -4,6 +4,7 @@ import com.example.bloghome.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor //생성자를 하나라도 만들게 되면 기본생성자가 없어지기 떄문에 명시적으로 생성
 @AllArgsConstructor // 모든 생성자 (나중에 테스트 코드 작성을 위한 것)
 @Getter //스프링이 자동으로 Json-> Class 변경을 위해 게터가 필요
+@Setter // 타입마다 다르기 떄문에 폼형식으로 보낼때는 세터가 필요하다.
 public class JoinRequestDto {
 
     // id는 고유한 식별자라서 DB에서 많이 쓰기 떄문에 유저네임을 아이디 대신 많이 쓰자

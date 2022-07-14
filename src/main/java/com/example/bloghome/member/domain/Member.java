@@ -1,5 +1,7 @@
 package com.example.bloghome.member.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -10,8 +12,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 //JPA가 관리할 객체
+@Getter
 @EntityListeners(AuditingEntityListener.class) // 인서트 되는 시간을 읽어서 값을 넣어주는
 @Entity
+@Setter
 public class Member {
 
     @Id
