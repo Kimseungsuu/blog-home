@@ -5,14 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class ArticlesDto {
 
     private Long id;
+    @NotNull
     private String title;
+    @NotNull
     private String writer;
+    @NotNull
     private String content;
 
     public ArticlesDto(Articles entity){

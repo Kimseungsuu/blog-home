@@ -69,7 +69,7 @@ public class MemberServiceTest {
         JoinRequestDto request6 = new JoinRequestDto("susi6", "user212", "user12", "user2");
         JoinRequestDto request7 = new JoinRequestDto("susi7", "user312", "user12", "user3");
 
-// Exception Test
+        // Exception Test
         Assertions.assertThatNoException().isThrownBy(() -> memberService.join(request1));
         Assertions.assertThatIllegalArgumentException().isThrownBy(() -> memberService.join(request6));
         Assertions.assertThatIllegalArgumentException().isThrownBy(() -> memberService.join(request7));

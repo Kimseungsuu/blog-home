@@ -1,5 +1,6 @@
 package com.example.bloghome.article.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -14,13 +15,13 @@ import java.time.LocalDateTime;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-@Setter // 만드는 것을 추천하지 않지만 공부용
+@Setter// 만드는 것을 추천하지 않지만 공부용
+@AllArgsConstructor
 public class Articles {
 
     @Id // ID 매핑 전략 1. 저장할때 직접 입력 2. DB한테 떠넘기기
     @GeneratedValue(strategy = GenerationType.IDENTITY) // DB한테 떠넘기기 방법 중 하나인 아이덴티티
     private Long id; //범위가 넓은 롱을 쓴다.
-
     private String title;
     private String writer;
     private String content;

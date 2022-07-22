@@ -18,6 +18,7 @@ public class ArticlesService {
         this.articleRepository = articleRepository;
     }
 
+    //등록
     public void writeArticle(ArticleSaveDto dto){
         articleRepository.save(dto.toEntity());
     }
@@ -32,9 +33,9 @@ public class ArticlesService {
     }
 
     public ArticlesDto findOne(Long articleId) {
-        Articles entity = articleRepository.findById(articleId)
+        Articles articles = articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
 
-        return new ArticlesDto(entity);
+        return new ArticlesDto(articles);
     }
 }
